@@ -69,7 +69,7 @@ void copySubSquare(char **square, int numLayers, int x, int y) // (x, y) describ
 {
     if (numLayers == 0)
     { // base case
-        square[x][y] = '#';
+        square[y][x] = '#';
         return;
     }
     // recursive case

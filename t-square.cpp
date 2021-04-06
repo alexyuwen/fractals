@@ -73,7 +73,7 @@ void copySubSquarePattern(char **square, int numLayers, int x, int y) // (x, y) 
     {
         for (int j = 0; j < MIDDLE_SQUARE_SIZE; j++)
         {
-            square[x + i][y + j] = '#';
+            square[y + i][x + j] = '#';
         }
     }
     // base case
