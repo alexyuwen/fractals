@@ -1,25 +1,8 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::ofstream;
-
-char **seirpinskiCarpet(int numLayers);
-char **makeCarpetFractal(int numLayers);
+char **makeSeirpinskiCarpet(int numLayers);
 void copySubSquare(char **square, int numLayers, int x, int y);
 
-// makes then prints a carpet fractal, the number of layers determined by user input
-char **seirpinskiCarpet(int numLayers)
-{
-    // create carpet
-    char **square = makeCarpetFractal(numLayers);
-    return square;
-}
-
-char **makeCarpetFractal(int numLayers)
+char **makeSeirpinskiCarpet(int numLayers)
 {
     const int SIDE_LENGTH = pow(3, numLayers);
     // create dynamic 2D array, initializing all elements to an empty space
@@ -37,7 +20,7 @@ char **makeCarpetFractal(int numLayers)
     return square;
 }
 
-// recursive helper method for makeCarpetFractal()
+// recursive helper method for makeSeirpinskiCarpet()
 void copySubSquare(char **square, int numLayers, int x, int y) // (x, y) describes the position of the upper-left corner where the sub-square will be copied
 {
     if (numLayers == 0)

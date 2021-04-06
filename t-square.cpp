@@ -1,23 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::ofstream;
-
-char **t_square(int numLayers);
 char **makeT_square(int numLayers);
 void copySubSquarePattern(char **square, int numLayers, int x, int y);
-
-// makes then prints a T-square fractal, the number of layers determined by user input
-char **t_square(int numLayers)
-{
-    // create T-square
-    char **square = makeT_square(numLayers);
-    return square;
-}
 
 char **makeT_square(int numLayers)
 {

@@ -1,23 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::ofstream;
-
-char **vicsekSnowflake(int numLayers);
 char **makeVicsekSnowflake(int numLayers);
 void copySubPattern(char **square, int numLayers, int x, int y);
-
-// makes then prints a snowflake fractal, the number of layers determined by user input
-char **vicsekSnowflake(int numLayers)
-{
-    // create snowflake
-    char **square = makeVicsekSnowflake(numLayers);
-    return square;
-}
 
 char **makeVicsekSnowflake(int numLayers)
 {

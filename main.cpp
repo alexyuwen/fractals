@@ -1,10 +1,12 @@
 /*
  * Author: Alex Yuwen
- * Description: This program contains algorithms to create three different fractals: the Seirpinski Carpet, Vicsek Snowflake, and Vicsek Cross.
+ * Description: TThis program contains algorithms to create five different fractals: the Seirpinski Carpet, Vicsek Snowflake, Vicsek Cross, T-square, and quadric cross.
  *              Note that if the fractal is sufficiently large, it will not be printed to the Terminal. A new .txt file
  *              will be created, containing the fractal pattern.
  */
 
+#include <iostream>
+#include <fstream>
 #include "seirpinski_carpet.cpp"
 #include "vicsek_snowflake.cpp"
 #include "vicsek_cross.cpp"
@@ -14,14 +16,17 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ofstream;
 using std::string;
 
+int getFractalSize(int choiceOfFractal, int numLayers);
 void printFractal(char **fractal, int fractalSize);
 void writeFractalToFile(char **fractal, int fractalSize, string filename);
-int getFractalSize(int choiceOfFractal, int numLayers);
+void deallocateFractal(char **fractal, int fractalSize);
 
 struct FractalType
 {
+    const string NAME;
     const int MIN_LAYERS;
     const int MAX_LAYERS;
     char **(*functionPtr)(int);
@@ -32,21 +37,23 @@ struct FractalType
 int main(int argc, char *argv[])
 {
     FractalType fractals[] = {
-        {0, 7, &seirpinskiCarpet, "seirpinski_carpet.txt", 3}, // Seirpinski Carpet
-        {1, 4, &vicsekSnowflake, "vicsek_snowflake.txt", 4},   // Vicsek Snowflake
-        {1, 4, &vicsekCross, "vicsek_cross.txt", 4},           // Vicsek Cross
-        {0, 5, &t_square, "t-square.txt", 5},                  // T-square
-        {1, 6, &quadricCross, "quadric_cross.txt", 6}};        // quadric cross
+        {"Seirpinski Carpet", 0, 7, &makeSeirpinskiCarpet, "seirpinski_carpet.txt", 3},
+        {"Vicsek Snowflake", 1, 4, &makeVicsekSnowflake, "vicsek_snowflake.txt", 4},
+        {"Vicsek Cross", 1, 4, &makeVicsekCross, "vicsek_cross.txt", 4},
+        {"T-square", 0, 5, &makeT_square, "t-square.txt", 5},
+        {"quadric cross", 1, 6, &makeQuadricCross, "quadric_cross.txt", 6}};
     int choiceOfFractal;
-    cout << "Welcome to the Fractal Factory." << endl;
+    const int NUM_FRACTAL_TYPES = sizeof(fractals) / sizeof(FractalType);
+    cout << "Welcome to the Fractal Factory!" << endl;
     cout << "Which fractal pattern would you like to create?" << endl;
-    cout << "\tEnter \"0\" for Seirpinski Carpet\n";
-    cout << "\tEnter \"1\" for Vicsek Snowflake\n";
-    cout << "\tEnter \"2\" for Vicsek Cross\n";
-    cout << "\tEnter \"3\" for T-square\n";
-    cout << "\tEnter \"4\" for quadric cross\n";
+    // display options
+    for (int i = 0; i < NUM_FRACTAL_TYPES; i++)
+    {
+        cout << "\t Enter \"" << i << "\" for " << fractals[i].NAME << "\n";
+    }
     cin >> choiceOfFractal;
-    while (choiceOfFractal < 0 || choiceOfFractal > 4) // enters infinite loop if non-integer is entered
+    // validate that 0 < choiceOfFractal < NUM_FRACTAL_TYPES
+    while (choiceOfFractal < 0 || choiceOfFractal >= NUM_FRACTAL_TYPES) // Warning: enters infinite loop if non-integer is entered
     {
         cout << "Please enter a number between 0 and 4: ";
         cin >> choiceOfFractal;
@@ -63,6 +70,7 @@ int main(int argc, char *argv[])
     } while (numLayers < MIN_LAYERS || numLayers > MAX_LAYERS);
 
     const int FRACTAL_SIZE = getFractalSize(choiceOfFractal, numLayers);
+
     // create fractal
     char **fractal = fractals[choiceOfFractal].functionPtr(numLayers);
     // save fractal to .txt file
@@ -74,12 +82,7 @@ int main(int argc, char *argv[])
     }
 
     // deallocate heap memory
-    const int SIZE = pow(3, numLayers);
-    for (int i = 0; i < SIZE; i++)
-    {
-        delete[] fractal[i];
-    }
-    delete[] fractal;
+    deallocateFractal(fractal, FRACTAL_SIZE);
     return 0;
 }
 
@@ -134,4 +137,13 @@ int getFractalSize(int choiceOfFractal, int numLayers)
         size = pow(2, numLayers + 1) - 1;
     }
     return size;
+}
+
+void deallocateFractal(char **fractal, int fractalSize)
+{
+    for (int i = 0; i < fractalSize; i++)
+    {
+        delete[] fractal[i];
+    }
+    delete[] fractal;
 }

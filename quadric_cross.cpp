@@ -1,23 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::ofstream;
-
-char **quadricCross(int numLayers);
 char **makeQuadricCross(int numLayers);
 void copySubCrossPattern(char **square, int numLayers, int x, int y);
-
-// makes then prints a quadric cross fractal, the number of layers determined by user input
-char **quadricCross(int numLayers)
-{
-    // create quadric cross
-    char **square = makeQuadricCross(numLayers);
-    return square;
-}
 
 char **makeQuadricCross(int numLayers)
 {

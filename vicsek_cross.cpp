@@ -1,23 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::ofstream;
-
-char **vicsekCross(int numLayers);
 char **makeVicsekCross(int numLayers);
 void copySubCross(char **square, int numLayers, int x, int y);
-
-// makes then prints a cross fractal, the number of layers determined by user input
-char **vicsekCross(int numLayers)
-{
-    // create cross
-    char **square = makeVicsekCross(numLayers);
-    return square;
-}
 
 char **makeVicsekCross(int numLayers)
 {
