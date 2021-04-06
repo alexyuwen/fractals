@@ -4,10 +4,10 @@ This program contains algorithms to create four different fractals: the Seirpins
 
 # Usage
 
-To run the Seirpinski Carpet algorithm, uncomment the following line in the main() function: "seirpinskiCarpet();"
+To run the Seirpinski Carpet algorithm, uncomment "seirpinskiCarpet();" in the main() function
 
-To run the Vicsek Snowflake algorithm, uncomment the following line in the main() function: "vicsekSnowflake();"
+To run the Vicsek Snowflake algorithm, uncomment "vicsekSnowflake();" in the main() function
 
-To run the Vicsek Cross algorithm, uncomment the following line in the main() function: "vicsekCross();"
+To run the Vicsek Cross algorithm, uncomment "vicsekCross();" in the main() function
 
-To run the T-square algorithm, uncomment the following line in the main() function: "t_square();"
+To run the T-square algorithm, uncomment "t_square();" in the main() function
