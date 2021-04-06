@@ -7,43 +7,16 @@ using std::cout;
 using std::endl;
 using std::ofstream;
 
-void vicsekCross();
+char **vicsekCross(int numLayers);
 char **makeVicsekCross(int numLayers);
 void copySubCross(char **square, int numLayers, int x, int y);
-void printCross(char **square, int numLayers);
-void writeCrossToFile(char **square, int numLayers);
 
 // makes then prints a cross fractal, the number of layers determined by user input
-void vicsekCross()
+char **vicsekCross(int numLayers)
 {
-    // prompt user for number of layers
-    int numLayers;
-    cout << "Welcome to the Vicsek Cross Maker." << endl;
-    cout << "How many layers would you like? Please enter an integer between 1 and 4: ";
-    cin >> numLayers;
-    // validates user input
-    while (numLayers < 1 || numLayers > 4) // enters infinite loop if non-integer value is given
-    {
-        cout << "Please enter a number between 1 and 4. How many layers would you like? ";
-        cin >> numLayers;
-    }
-    // creates cross
+    // create cross
     char **square = makeVicsekCross(numLayers);
-    // outputs cross (if number of layers is four or less)
-    if (numLayers <= 4)
-    {
-        printCross(square, numLayers);
-    }
-    // saves cross to .txt file called "cross.txt"
-    writeCrossToFile(square, numLayers);
-
-    // deallocate heap memory
-    const int SIDE_LENGTH = pow(3, numLayers);
-    for (int i = 0; i < SIDE_LENGTH; i++)
-    {
-        delete[] square[i];
-    }
-    delete[] square;
+    return square;
 }
 
 char **makeVicsekCross(int numLayers)
@@ -84,42 +57,5 @@ void copySubCross(char **square, int numLayers, int x, int y) // (x, y) describe
             }
             copySubCross(square, numLayers - 1, x + c * PARTITION_SIZE, y + d * PARTITION_SIZE); // recursive call
         }
-    }
-}
-
-// outputs cross by iterating over "square" char by char
-void printCross(char **square, int numLayers)
-{
-    const int SIDE_LENGTH = pow(3, numLayers);
-    for (int i = 0; i < SIDE_LENGTH; i++)
-    {
-        for (int j = 0; j < SIDE_LENGTH; j++)
-        {
-            if (isspace(square[i][j]))
-            {
-                cout << " ";
-            }
-            else
-            {
-                cout << square[i][j];
-            }
-        }
-        cout << endl;
-    }
-}
-
-void writeCrossToFile(char **square, int numLayers)
-{
-    // Create output file
-    ofstream outfile;
-    outfile.open("cross.txt");
-    const int SIDE_LENGTH = pow(3, numLayers);
-    for (int i = 0; i < SIDE_LENGTH; i++)
-    {
-        for (int j = 0; j < SIDE_LENGTH; j++)
-        {
-            outfile << square[i][j];
-        }
-        outfile << endl;
     }
 }
