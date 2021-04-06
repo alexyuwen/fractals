@@ -1,0 +1,10 @@
+.vscode/
+.DS_Store
+
+main
+carpet.txt
+snowflake.txt
+cross.txt
+t-square.txt
+
+tempCodeRunnerFile.cpp
