@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
 #include "seirpinski_carpet.cpp"
 #include "vicsek_snowflake.cpp"
 #include "vicsek_cross.cpp"
@@ -110,7 +111,7 @@ void writeFractalToFile(char **fractal, int fractalSize, string filename)
 {
     // Create output file
     ofstream outfile;
-    outfile.open("seirpinski_carpet.txt");
+    outfile.open(filename);
     for (int i = 0; i < fractalSize; i++)
     {
         for (int j = 0; j < fractalSize; j++)
