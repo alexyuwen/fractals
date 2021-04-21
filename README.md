@@ -105,7 +105,7 @@ Viscek cross, 4 layers:
 
 
 
-T-square, X layers:
+T-square, 3 layers:
 
 ```
 ##  ##  ##  ##  ##  ##  ##  ##
@@ -142,7 +142,7 @@ T-square, X layers:
 ```
 
 
-Quadric cross, X layers:
+Quadric cross, 4 layers:
 
 ```
                #               
